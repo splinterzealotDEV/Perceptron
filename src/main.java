@@ -28,7 +28,8 @@ public class main {
         //System.out.println(a.L);
        // System.out.println(a.wh[0].length);
         a.llenarAleatorio(a.wo);
-        e.imprimirMatriz(a.wo);
+        //e.imprimirMatriz(a.wo);
+        a.Aprender();
 
 
 

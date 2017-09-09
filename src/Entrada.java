@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 
 public class Entrada {
 
+    private int filas=0;
    private int entradas=0;//numero de columnas de entrada
    private int salidas=0;//numero de columnas de salida
     private String[][] parsedCSV;//matriz parseada del CSV
@@ -110,6 +111,8 @@ public class Entrada {
         this.entradas=sc.nextInt();
         System.out.println("ingresar salidas");
         this.salidas=sc.nextInt();
+        System.out.println("ingresar filas en el archivo");
+        this.filas=sc.nextInt();
     }
     //este metodo almacena los indices que contienen salidas incognitas**
     public  ArrayList CalcularIncognitas(String[][] Matriz, int entradas)
@@ -142,7 +145,7 @@ public class Entrada {
     }
 //lee el csv y lo parsea a un arreglo 2D**
 public String[][] ParsearMatriz(String ruta,int entradas, int salidas) throws IOException {
-    String[][] data = new String[16][entradas+salidas];
+    String[][] data = new String[this.filas][entradas+salidas];
     File file = new File(ruta);
 
     int row = 0;
