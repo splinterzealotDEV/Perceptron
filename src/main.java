@@ -8,10 +8,10 @@ public class main {
         Entrada e=new Entrada();
 
         e.ValoresDeEntrada();
-        e.ParsearMatriz("C:\\Users\\taka\\Documents\\testcsv.csv",e.entradas,e.salidas);
-        e.CalcularIncognitas(e.parsedCSV,e.entradas);
-        System.out.println(e.indicesA);
-        e.crearMincognitas(e.indices,e.entradas,e.salidas,e.parsedCSV);
+        e.ParsearMatriz("C:\\Users\\taka\\Documents\\testcsv.csv",e.getEntradas(),e.getSalidas());
+        e.CalcularIncognitas(e.getParsedCSV(),e.getEntradas());
+        System.out.println(e.getIndicesA());
+        e.crearMincognitas(e.getIndices(),e.getEntradas(),e.getSalidas(),e.getParsedCSV());
         /*for(int i=0;i<e.incognitas.length;i++)
         {
             for(int j=0;j<e.incognitas[0].length;j++)
@@ -22,7 +22,7 @@ public class main {
         }
         */
 
-        e.crearMAprendizaje(e.indicesA,e.entradas,e.salidas,e.parsedCSV);
+        e.crearMAprendizaje(e.getIndicesA(),e.getEntradas(),e.getSalidas(),e.getParsedCSV());
         /*for(int i=0;i<e.parsedCSV.length;i++)
         {
             for(int j=0;j<e.parsedCSV[0].length;j++)
@@ -32,11 +32,11 @@ public class main {
             System.out.println("row:"+i);
         }*/
 
-        for(int i=0;i<e.aprendizaje.length;i++)
+        for(int i=0;i<e.getAprendizaje().length;i++)
         {
-            for(int j=0;j<e.aprendizaje[0].length;j++)
+            for(int j=0;j<e.getAprendizaje()[0].length;j++)
             {
-                System.out.println(e.aprendizaje[i][j]);
+                System.out.println(e.getAprendizaje()[i][j]);
             }
             System.out.println("row:"+i);
         }

@@ -16,9 +16,34 @@ public class Entrada {
     private List<Integer> indices;//indices para crear seleccionar las filas a incluir en la matriz de incognitas
     private List<Integer> indicesA;//indices para crear seleccionar las filas a incluir en la matriz de aprendizaje
 
+    public int getSalidas() {
+        return salidas;
+    }
 
+    public String[][] getParsedCSV() {
+        return parsedCSV;
+    }
 
+    public double[][] getIncognitas() {
+        return incognitas;
+    }
 
+    public double[][] getAprendizaje() {
+        return aprendizaje;
+    }
+
+    public List<Integer> getIndices() {
+        return indices;
+    }
+
+    public List<Integer> getIndicesA() {
+        return indicesA;
+    }
+
+    public int getEntradas() {
+
+        return entradas;
+    }
 //llena la matriz de aprendizaje con las filas de la matriz csv que no estan en la lista*
 
     public double[][] crearMAprendizaje(List<Integer> index, int entradas, int salidas,String[][] MatrizO)
