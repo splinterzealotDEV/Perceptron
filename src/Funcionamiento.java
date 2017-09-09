@@ -5,7 +5,7 @@ public class Funcionamiento {
     {
         //Entrada e=new Entrada();
     }
-    int L,M,N,R=0;
+    int L,M,N,R;
     double[] neth=new double[L];
     double[][] x2 =new double[N][R];
     double[][] wh =new double[L][N];

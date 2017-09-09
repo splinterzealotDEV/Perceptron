@@ -182,6 +182,16 @@ public String[][] ParsearMatriz(String ruta,int entradas, int salidas) throws IO
         }
         return false;
     }
+    public void imprimirMatriz(double[][] M)
+    {
+        for(int i=0;i<M.length;i++)
+        {
+            for(int j=0;j<M[0].length;j++)
+            {
+                System.out.println(M[i][j]);
+            }
+        }
+    }
 
 
 }

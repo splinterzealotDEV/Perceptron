@@ -8,14 +8,14 @@ public class Aprendizaje {
     }
 
 
-    int L, M, N, Q = 0;
+    int L, M, N, Q ;
     //entrada por peso
     double[] neth = new double[L];
     double[][] x = new double[N][Q];
-    double[][] wh = new double[L][N];
+    double[][] wh ;
     double[] yh = new double[L];
     double[] neto = new double[M];
-    double[][] wo = new double[M][L];
+    double[][] wo ;
 
     public void setL(int l) {
         L = l;
@@ -55,10 +55,29 @@ public class Aprendizaje {
         this.Q = sc.nextInt();
         System.out.println("ingresar valor de M");
         this.M = sc.nextInt();
-        System.out.println("ingresar valor de P");
-        this.Q = sc.nextInt();
+        System.out.println("ingresar valor de N");
+        this.N = sc.nextInt();
 
         System.out.println("Valores ingresados: \n" + L + "\n" + Q + "\n" + M + "\n" + Q);
+
+    }
+    //this shit wont work unless this is initialized here
+    public void InicializarValores()
+    {
+
+        this.wh=new double[this.L][this.N];
+        this.wo=new double[this.M][this.L];
+        this.neth = new double[L];
+        this.x = new double[N][Q];
+        this.yh = new double[L];
+        this.neto = new double[M];
+        this.y = new double[M];
+        this.deltao = new double[M];
+        this.d = new double[M][Q];
+        this.deltah = new double[L];
+        this.alpha = 0.5;
+        this.error = 0;
+
 
     }
 
@@ -72,10 +91,13 @@ public class Aprendizaje {
                 if(Math.random()<0.5)
                 {
                     matriz[i][j]=Math.random()*-1;
+                    System.out.println(matriz[i][j]);
+
                 }
                 else
                 {
                     matriz[i][j]=Math.random();
+                    System.out.println(matriz[i][j]);
                 }
             }
         }
