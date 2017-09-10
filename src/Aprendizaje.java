@@ -61,7 +61,7 @@ public class Aprendizaje {
         System.out.println("Valores ingresados: \n" + L + "\n" + Q + "\n" + M + "\n" + Q);
 
     }
-    //this shit wont work unless this is initialized here
+    //Inicialzando valores
     public void InicializarValores()
     {
 
