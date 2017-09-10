@@ -80,7 +80,7 @@ public class Aprendizaje {
 
 
     }
-
+//metodo para llenar una matriz con numeros aleatorios entre -1 y 1
     public void llenarAleatorio(double[][] matriz)
     {
 

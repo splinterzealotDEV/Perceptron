@@ -30,6 +30,12 @@ public class main {
         a.llenarAleatorio(a.wo);
         //e.imprimirMatriz(a.wo);
         a.Aprender();
+        Funcionamiento f=new Funcionamiento();
+        //set pesos
+        f.setWh(a.wh);
+        f.setWo(a.wo);
+        //iniciar funcionamiento
+        f.Calcular();
 
 
 

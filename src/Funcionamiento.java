@@ -8,14 +8,24 @@ public class Funcionamiento {
     int L,M,N,R;
     double[] neth=new double[L];
     double[][] x2 =new double[N][R];
-    double[][] wh =new double[L][N];
+    private double[][] wh =new double[L][N];
     double[] yh=new double[L];
     double[] neto=new double[M];
-    double[][] wo=new double[M][L];
+    private double[][] wo=new double[M][L];
     double[][] y2=new double[M][R];
 
 
-    public double[][] Calcular(Aprendizaje A)
+
+    public void setWh(double[][] wh) {
+        this.wh = wh;
+    }
+
+    public void setWo(double[][] wo) {
+        this.wo = wo;
+    }
+
+
+    public double[][] Calcular()
     {
 
 
