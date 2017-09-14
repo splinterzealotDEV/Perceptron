@@ -17,25 +17,37 @@ public class main {
         e.crearMAprendizaje(e.getIndicesA(),e.getEntradas(),e.getSalidas(),e.getParsedCSV());
 
 
-
+        //
         Aprendizaje a=new Aprendizaje();
+        //seteando valores iniciales
         a.ValoresIniciales();
-
+        //inicializando variables
         a.InicializarValores();
-        System.out.println("this L: "+a.yh.length);
-        a.llenarAleatorio(a.wh);
+        //System.out.println("this L: "+a.yh.length);
+        //llenando matrices de los pesos
+        a.llenarAleatorioWh(a.wh);
         //System.out.println(a.wh.length);
         //System.out.println(a.L);
        // System.out.println(a.wh[0].length);
-        a.llenarAleatorio(a.wo);
-        //e.imprimirMatriz(a.wo);
+        a.llenarAleatorioWo(a.wo);
+        System.out.println("pesos");
+        e.imprimirMatriz(a.wo);
+        //e.imprimirMatriz(a);
+        a.setX(e.getAprendizaje());
+        e.crearMDeseados();
+        a.setD(e.getDeseados());
+        e.imprimirMatriz(e.getDeseados());
+
         a.Aprender();
-        Funcionamiento f=new Funcionamiento();
+
+        System.out.println(a.error);
+        //Funcionamiento f=new Funcionamiento();
         //set pesos
-        f.setWh(a.wh);
-        f.setWo(a.wo);
+        //f.setWh(a.wh);
+        //f.setWo(a.wo);
         //iniciar funcionamiento
-        f.Calcular();
+
+        //f.Calcular();
 
 
 

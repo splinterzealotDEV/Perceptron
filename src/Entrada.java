@@ -14,6 +14,7 @@ public class Entrada {
     private String[][] parsedCSV;//matriz parseada del CSV
     private double[][] incognitas;//matriz de incognitas creadas a partir de la matriz original
     private double[][] aprendizaje;//matriz de aprendizaje creada a partir de la matriz original
+    private double[][] deseados;
     private List<Integer> indices;//indices para crear seleccionar las filas a incluir en la matriz de incognitas
     private List<Integer> indicesA;//indices para crear seleccionar las filas a incluir en la matriz de aprendizaje
 
@@ -49,14 +50,14 @@ public class Entrada {
 
     public double[][] crearMAprendizaje(List<Integer> index, int entradas, int salidas,String[][] MatrizO)
     {
-        double[][] matriz=new double[index.size()][entradas+salidas];
+        double[][] matriz=new double[index.size()][entradas];
         int cont=0;
         int i=0;
         int k=0;
         System.out.println(matriz.length);
         while(k<matriz.length)
         {
-            for(int j=0;j<MatrizO[0].length;j++)
+            for(int j=0;j<entradas;j++)
             {
                 matriz[k][j] = Float.parseFloat(MatrizO[index.get(cont)][j]);
             }
@@ -70,18 +71,36 @@ public class Entrada {
     }
 
 
+    public double[][] getDeseados() {
+        return deseados;
+    }
 
+    public double[][] crearMDeseados()
+{
+    int cont;
+    double[][] Matriz=new double[this.indicesA.size()][this.salidas];
+    for(int i=0;i<this.indicesA.size();i++)
+    {
+        cont=this.entradas;
+        for(int j=0;j<this.salidas;j++)
+        {
+            Matriz[i][j]=Double.parseDouble(this.getParsedCSV()[this.indicesA.get(i)][cont]);
+            cont++;
+        }
+    }
+    this.deseados=Matriz;
 
-
+    return Matriz;
+}
 
 
 //este metodo metodo crea la matriz de incognitas
     public double[][] crearMincognitas(List<Integer> index, int entradas, int salidas,String[][] MatrizO)
     {
-        double[][] matriz=new double[index.size()][entradas+salidas];
+        double[][] matriz=new double[index.size()][entradas];
         for(int i=0;i<index.size();i++)
         {
-            for(int j=0;j<entradas+salidas;j++)
+            for(int j=0;j<entradas;j++)
             {
                 try {
                     if(j<=entradas) {

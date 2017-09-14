@@ -9,7 +9,7 @@ public class Aprendizaje {
 
 
     int L, M, N, Q ;
-    //entrada por peso
+
     double[] neth = new double[L];
     double[][] x = new double[N][Q];
     double[][] wh ;
@@ -35,6 +35,10 @@ public class Aprendizaje {
 
     public void setX(double[][] x) {
         this.x = x;
+    }
+
+    public void setD(double[][] d) {
+        this.d = d;
     }
 
     double[] y = new double[M];
@@ -81,7 +85,7 @@ public class Aprendizaje {
 
     }
 //metodo para llenar una matriz con numeros aleatorios entre -1 y 1
-    public void llenarAleatorio(double[][] matriz)
+    public void llenarAleatorioWo(double[][] matriz)
     {
 
         for(int i=0;i<matriz.length;i++)
@@ -101,6 +105,30 @@ public class Aprendizaje {
                 }
             }
         }
+        this.wo=matriz;
+    }
+
+    public void llenarAleatorioWh(double[][] matriz)
+    {
+
+        for(int i=0;i<matriz.length;i++)
+        {
+            for(int j=0;j<matriz[0].length;j++)
+            {
+                if(Math.random()<0.5)
+                {
+                    matriz[i][j]=Math.random()*-1;
+                    System.out.println(matriz[i][j]);
+
+                }
+                else
+                {
+                    matriz[i][j]=Math.random();
+                    System.out.println(matriz[i][j]);
+                }
+            }
+        }
+        this.wh=matriz;
     }
 
 
@@ -114,7 +142,7 @@ public Aprendizaje Aprender()
                 double suma = 0;
                 for (int i = 0; i < N; i++) {
 
-                    suma += x[i][p] * wh[j][i];
+                    suma += x[p][i] * wh[j][i];
 
                 }
                 neth[j] = suma;
@@ -136,12 +164,12 @@ public Aprendizaje Aprender()
             }
 //deltao
             for (int k = 0; k < M; k++) {
-                deltao[k] = (d[k][p] - y[k]) * y[k] * (1 - y[k]);
+                deltao[k] = (d[p][k] - y[k]) * y[k] * (1 - y[k]);
             }
 
 
 //deltah
-            for (int j = 0; j < N; j++) {
+            for (int j = 0; j < L; j++) {
                 double sumadelta = 0;
                 for (int k = 0; k < M; k++) {
                     sumadelta += deltao[k] * wo[k][j];
@@ -150,14 +178,14 @@ public Aprendizaje Aprender()
             }
 //wo
             for (int k = 0; k < M; k++) {
-                for (int j = 0; j < L; k++) {
+                for (int j = 0; j < L; j++) {
                     wo[k][j] = alpha * deltao[k] * yh[j];
                 }
             }
             //wh
-            for (int j = 0; j < N; j++) {
+            for (int j = 0; j < L; j++) {
                 for (int i = 0; i < N; i++) {
-                    wh[j][i] = alpha * deltah[j] * x[i][p];
+                    wh[j][i] = alpha * deltah[j] * x[p][i];
                 }
             }
             //calculando error
@@ -175,7 +203,7 @@ public Aprendizaje Aprender()
         }
 
     }
-    while(error<.01);
+    while(error>.02);
 
 
 
