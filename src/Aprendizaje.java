@@ -17,6 +17,7 @@ public class Aprendizaje {
     double[] neto = new double[M];
     double[][] wo ;
 
+
     public void setL(int l) {
         L = l;
     }
@@ -51,6 +52,10 @@ public class Aprendizaje {
 //double[][] d=new double[M][Q];
 
 
+    public double getError() {
+        return error;
+    }
+
     public void ValoresIniciales() {
         Scanner sc = new Scanner(System.in);
         System.out.println("ingresar valor de L");
@@ -71,14 +76,14 @@ public class Aprendizaje {
 
         this.wh=new double[this.L][this.N];
         this.wo=new double[this.M][this.L];
-        this.neth = new double[L];
-        this.x = new double[N][Q];
-        this.yh = new double[L];
-        this.neto = new double[M];
-        this.y = new double[M];
-        this.deltao = new double[M];
-        this.d = new double[M][Q];
-        this.deltah = new double[L];
+        this.neth = new double[this.L];
+        this.x = new double[this.N][this.Q];
+        this.yh = new double[this.L];
+        this.neto = new double[this.M];
+        this.y = new double[this.M];
+        this.deltao = new double[this.M];
+        this.d = new double[this.M][this.Q];
+        this.deltah = new double[this.L];
         this.alpha = 0.5;
         this.error = 0;
 
@@ -153,7 +158,7 @@ public Aprendizaje Aprender()
 
             //wo
 
-            for (int j = 0; j < L; j++) {
+            for (int j = 0; j < M; j++) {
                 double sumao = 0;
                 for (int k = 0; k < M; k++) {
                     sumao = yh[j] * wo[k][j];
@@ -179,22 +184,22 @@ public Aprendizaje Aprender()
 //wo
             for (int k = 0; k < M; k++) {
                 for (int j = 0; j < L; j++) {
-                    wo[k][j] = alpha * deltao[k] * yh[j];
+                    wo[k][j] += alpha * deltao[k] * yh[j];
                 }
             }
             //wh
             for (int j = 0; j < L; j++) {
                 for (int i = 0; i < N; i++) {
-                    wh[j][i] = alpha * deltah[j] * x[p][i];
+                    wh[j][i] += alpha * deltah[j] * x[p][i];
                 }
             }
             //calculando error
-            double sumaerror = 0;
+            double sumaerror=0;
             for (int k = 0; k < M; k++) {
                 sumaerror += Math.pow(deltao[k], 2);
 
             }
-            error = .5 * sumaerror;
+            this.error = sumaerror/2;
 
 
 
@@ -203,7 +208,7 @@ public Aprendizaje Aprender()
         }
 
     }
-    while(error>.02);
+    while(this.getError()>0.001);
 
 
 
