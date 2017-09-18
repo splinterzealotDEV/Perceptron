@@ -152,7 +152,7 @@ public Aprendizaje Aprender()
                 }
                 neth[j] = suma;
                 //Yh
-                yh[j] = 1 / (1 + Math.exp(neth[j]));
+                yh[j] = 1 / (1 + Math.exp(-neth[j]));
             }
 
 
@@ -165,7 +165,7 @@ public Aprendizaje Aprender()
                 }
                 neto[j] = sumao;
                 //Yk
-                y[j] = 1 / (1 + Math.exp(neto[j]));
+                y[j] = 1 / (1 + Math.exp(-neto[j]));
             }
 //deltao
             for (int k = 0; k < M; k++) {
