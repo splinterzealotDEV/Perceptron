@@ -6,8 +6,28 @@ public class main {
 
 
         Entrada e=new Entrada();
+        int[][] matriz=new int[3][3];
+        for(int i=0;i<matriz.length;i++)
+        {
+            for(int j=0;j<matriz[0].length;j++)
+            {
+                if(Math.random()<0.5)
+                {
+                    matriz[i][j]= -1;
+                    //System.out.println(matriz[i][j]);
 
-        e.ValoresDeEntrada();
+                }
+                else
+                {
+                    matriz[i][j]=1;
+                    //System.out.println(matriz[i][j]);
+                }
+            }
+        }
+
+        e.escribirArchivo(matriz,"test");
+
+        /*e.ValoresDeEntrada();
         e.ParsearMatriz("C:\\Users\\taka\\Documents\\testcsv.csv",e.getEntradas(),e.getSalidas());
         e.CalcularIncognitas(e.getParsedCSV(),e.getEntradas());
         System.out.println(e.getIndicesA());
@@ -48,6 +68,7 @@ public class main {
         //iniciar funcionamiento
 
         //f.Calcular();
+        */
 
 
 

@@ -46,8 +46,15 @@ public class Entrada {
 
         return entradas;
     }
-//llena la matriz de aprendizaje con las filas de la matriz csv que no estan en la lista*
 
+    /**
+     * llena la matriz de aprendizaje con las filas de la matriz csv que no estan en la lista*
+     * @param index indices de las filas que son patrones de aprendizaje
+     * @param entradas numero de columnas de enradas de la matriz
+     * @param salidas numero de columnas de salida de la matriz
+     * @param MatrizO matriz del csv parseado
+     * @return
+     */
     public double[][] crearMAprendizaje(List<Integer> index, int entradas, int salidas,String[][] MatrizO)
     {
         double[][] matriz=new double[index.size()][entradas];
@@ -75,16 +82,20 @@ public class Entrada {
         return deseados;
     }
 
+    /**
+     * metodo para crear la matriz de valores deseados
+     * @return la matriz de valores deseados
+     */
     public double[][] crearMDeseados()
 {
     int cont;
-    double[][] Matriz=new double[this.indicesA.size()][this.salidas];
-    for(int i=0;i<this.indicesA.size();i++)
+    double[][] Matriz=new double[indicesA.size()][salidas];
+    for(int i=0;i<indicesA.size();i++)
     {
         cont=this.entradas;
         for(int j=0;j<this.salidas;j++)
         {
-            Matriz[i][j]=Double.parseDouble(this.getParsedCSV()[this.indicesA.get(i)][cont]);
+            Matriz[i][j]=Double.parseDouble(getParsedCSV()[indicesA.get(i)][cont]);
             cont++;
         }
     }
@@ -93,8 +104,15 @@ public class Entrada {
     return Matriz;
 }
 
+    /**
+     * este metodo metodo crea la matriz de incognitas
+     * @param index lista con los indices de las filas con salidas incognitas
+     * @param entradas numero de columnas de entrada de la matriz
+     * @param salidas numero de columnas de salida de la matriz
+     * @param MatrizO matriz parseada del csv
+     * @return
+     */
 
-//este metodo metodo crea la matriz de incognitas
     public double[][] crearMincognitas(List<Integer> index, int entradas, int salidas,String[][] MatrizO)
     {
         double[][] matriz=new double[index.size()][entradas];
@@ -121,8 +139,11 @@ public class Entrada {
         this.incognitas=matriz;
         return matriz;
     }
-    //este metodo pide al usuario las columnas de entradas y las de salida
-    //se asume que las entradas comienzan desde la primera columna seguidas por las salidas.**
+
+    /**
+     * este metodo pide al usuario las columnas de entradas y las de salida
+     * se asume que las entradas comienzan desde la primera columna seguidas por las salidas.**
+     */
     public void ValoresDeEntrada()
     {
         Scanner sc = new Scanner(System.in);
@@ -133,7 +154,13 @@ public class Entrada {
         System.out.println("ingresar filas en el archivo");
         this.filas=sc.nextInt();
     }
-    //este metodo almacena los indices que contienen salidas incognitas**
+
+    /**
+     * este metodo almacena los indices que contienen salidas incognitas**
+     * @param Matriz matriz de string la cual se va a revisar si tiene '?' en sus columnas de salida
+     * @param entradas numero de columnas de entrada de la matriz
+     * @return una lista que contiene los indices de las filas que tienen '?'
+     */
     public  ArrayList CalcularIncognitas(String[][] Matriz, int entradas)
     {
         ArrayList<Integer> lista = new ArrayList<Integer>();
@@ -162,8 +189,17 @@ public class Entrada {
     {
 
     }
-//lee el csv y lo parsea a un arreglo 2D**
-public String[][] ParsearMatriz(String ruta,int entradas, int salidas) throws IOException {
+
+
+    /**
+     * lee el csv y lo parsea a un arreglo 2D**
+     * @param ruta ruta del archivo csv que se va a parsear
+     * @param entradas columnas de entradas que tiene el archivo
+     * @param salidas columnas de salidas que tiene el archivo
+     * @return una matriz de string que va a tener el contenido del archivo csv
+     * @throws IOException
+     */
+    public String[][] ParsearMatriz(String ruta,int entradas, int salidas) throws IOException {
     String[][] data = new String[this.filas][entradas+salidas];
     File file = new File(ruta);
 
@@ -410,17 +446,74 @@ public String[][] ParsearMatriz(String ruta,int entradas, int salidas) throws IO
         }
         return respuestas;
     }
-    public boolean EstaEn(List<Integer> lista, int value)
+    //metodo para escribir una matriz en un archivo de texto separando las columnas con tabuladores.
+    /**
+     * metodo para escribir una matriz en un archivo de texto separando las columnas con tabuladores.
+     * @param matriz La matriz que se va a escribir en el archivo
+     * @param nombre nombre del archivo que se va a escribir
+     */
+    public void escribirArchivo(int[][] matriz,String nombre)
     {
-        for(int i=0;i<lista.size();i++)
+        //ruta del archivo que se va a escribir.
+        String ruta="C:\\Users\\taka\\Documents\\9 Semestre\\Computación inteligente\\Files\\"+nombre+".txt";
+
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+        StringBuffer linea=new StringBuffer();
+
+        try
         {
-            if(lista.get(i)==value)
+            fw = new FileWriter(ruta);
+            bw = new BufferedWriter(fw);
+
+            for(int i=0;i<matriz.length;i++)
             {
-                return true;
+                for(int j=0;j<matriz[0].length;j++)
+                {
+                    //validando que la ultima columna no agregue un tabulador
+                    if (j==matriz[0].length-1) {
+                        linea.append(Integer.toString(matriz[i][j]));
+                    }
+                    else
+                    {
+                        linea.append(Integer.toString(matriz[i][j])+"\t");
+                    }
+                }
+                //validando que la ultima linea no añada un salto de linea
+                if(i!=matriz.length-1)
+                linea.append("\n");
+            }
+            //escribiendo el contenido del stringBuffer al archivo
+            bw.write(linea.toString());
+
+        }
+        catch (IOException e)
+        {
+
+        }
+        //cerrando buffers
+        finally {
+
+            try {
+
+                if (bw != null)
+                    bw.close();
+
+                if (fw != null)
+                    fw.close();
+
+            } catch (IOException ex) {
+
+                ex.printStackTrace();
+
             }
         }
-        return false;
     }
+
+    /**
+     * metodo para imprimir una matriz de double
+     * @param M matriz que se va a imprimir
+     */
     public void imprimirMatriz(double[][] M)
     {
         for(int i=0;i<M.length;i++)
