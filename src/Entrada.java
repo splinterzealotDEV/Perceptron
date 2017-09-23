@@ -219,19 +219,14 @@ public class Entrada {
         col = 0;
         row++;
     }
-   /* for(int i=0;i<10;i++)
-    {
-        for(int j=0;j<7;j++)
-        {
-            System.out.println(data[i][j]);
-        }
-    }*/
+
    this.parsedCSV=data;
    return data;
     }
     //metodo para parsear las respuestas de la encuesta de g forms
     public int[][] ParsearEncuesta(String ruta,int filas,int columnas) throws IOException {
         String[][] data = new String[filas][columnas];
+        //-1 por que la primera columna tiene las fechas
         int[][] respuestas = new int[filas][columnas-1];
         File file = new File(ruta);
 
@@ -244,7 +239,9 @@ public class Entrada {
         while ((line = reader.readLine()) != null && row < data.length) {
             StringTokenizer st = new StringTokenizer(line, ",");
             while (st.hasMoreTokens()) {
-                data[row][col] = (st.nextToken());
+                //fucking quotes .I.
+                data[row][col] = (st.nextToken().toString().replace("\"",""));
+                System.out.println(data[row][col]);
 
                 col++;
             }
@@ -252,81 +249,84 @@ public class Entrada {
             row++;
         }
 
-        for(int i=0;i<filas;i++)
+        for(int i=1;i<filas;i++)
         {
             for(int j=1;j<columnas;j++)
             {
                 if(j==1)
                 {
+                    System.out.println("Rock");
+                    System.out.println(data[i][j]);
+                    System.out.println(data[i][j].toString().equals("Rock"));
                     if(data[i][j].equals("Rock"))
                     {
-                        respuestas[i][j-1]=0;
+                        respuestas[i-1][j-1]=0;
                     }
                     else
                     {
-                        respuestas[i][j-1]=1;
+                        respuestas[i-1][j-1]=1;
                     }
                 }
                 if(j==2)
                 {
                     if(data[i][j].equals("Video #1"))
                     {
-                        respuestas[i][j-1]=0;
+                        respuestas[i-1][j-1]=0;
                     }
                     else
                     {
-                        respuestas[i][j-1]=1;
+                        respuestas[i-1][j-1]=1;
                     }
                 }
                 if(j==3)
                 {
                     if(data[i][j].equals("Video #1"))
                     {
-                        respuestas[i][j-1]=0;
+                        respuestas[i-1][j-1]=0;
                     }
                     else
                     {
-                        respuestas[i][j-1]=1;
+                        respuestas[i-1][j-1]=1;
                     }
                 }
                 if(j==4)
                 {
                     if(data[i][j].equals("Michael Jackson"))
                     {
-                        respuestas[i][j-1]=0;
+                        respuestas[i-1][j-1]=0;
                     }
                     else
                     {
-                        respuestas[i][j-1]=1;
+                        respuestas[i-1][j-1]=1;
                     }
                 }
                 if(j==5)
                 {
                     if(data[i][j].equals("Video #1"))
                     {
-                        respuestas[i][j-1]=0;
+                        respuestas[i-1][j-1]=0;
                     }
                     else
                     {
-                        respuestas[i][j-1]=1;
+                        respuestas[i-1][j-1]=1;
                     }
                 }
                 if(j==5)
                 {
                     if(data[i][j].equals("Video #1"))
                     {
-                        respuestas[i][j-1]=0;
+                        respuestas[i-1][j-1]=0;
                     }
                     else
                     {
-                        respuestas[i][j-1]=1;
+                        respuestas[i-1][j-1]=1;
                     }
                 }
                 if(j==6)
                 {
                     if(data[i][j].equals("Retro"))
                     {
-                        respuestas[i][j-1]=0;
+                        respuestas[i-1][j-1]=0;
                     }
                     else
                     {
@@ -335,118 +335,118 @@ public class Entrada {
                 }
                 if(j==7)
                 {
-                    if(data[i][j].equals("Corta duraciÃ³n"))
+                    if(data[i][j].equals("Corta duración"))
                     {
-                        respuestas[i][j-1]=0;
+                        respuestas[i-1][j-1]=0;
                     }
                     else
                     {
-                        respuestas[i][j-1]=1;
+                        respuestas[i-1][j-1]=1;
                     }
                 }
                 if(j==8)
                 {
                     if(data[i][j].equals("Bailar"))
                     {
-                        respuestas[i][j-1]=0;
+                        respuestas[i-1][j-1]=0;
                     }
                     else
                     {
-                        respuestas[i][j-1]=1;
+                        respuestas[i-1][j-1]=1;
                     }
                 }
                 if(j==9)
                 {
                     if(data[i][j].equals("Video #1"))
                     {
-                        respuestas[i][j-1]=0;
+                        respuestas[i-1][j-1]=0;
                     }
                     else
                     {
-                        respuestas[i][j-1]=1;
+                        respuestas[i-1][j-1]=1;
                     }
                 }
                 if(j==10)
                 {
-                    if(data[i][j].equals("Escuchar mÃºsica y cantar"))
+                    if(data[i][j].equals("Escuchar música y cantar"))
                     {
-                        respuestas[i][j-1]=0;
+                        respuestas[i-1][j-1]=0;
                     }
                     else
                     {
-                        respuestas[i][j-1]=1;
+                        respuestas[i-1][j-1]=1;
                     }
                 }
                 if(j==11)
                 {
-                    if(data[i][j].equals("Escuchar un sÃ³lo gÃ©nero musical"))
+                    if(data[i][j].equals("Escuchar un sólo género musical"))
                     {
-                        respuestas[i][j-1]=0;
+                        respuestas[i-1][j-1]=0;
                     }
                     else
                     {
-                        respuestas[i][j-1]=1;
+                        respuestas[i-1][j-1]=1;
                     }
                 }
                 if(j==12)
                 {
                     if(data[i][j].equals("Rock/Metal"))
                     {
-                        respuestas[i][j-1]=0;
+                        respuestas[i-1][j-1]=0;
                     }
                     else
                     {
-                        respuestas[i][j-1]=1;
+                        respuestas[i-1][j-1]=1;
                     }
                 }
                 if(j==13)
                 {
-                    if(data[i][j].equals("AcciÃ³n"))
+                    if(data[i][j].equals("Acción"))
                     {
-                        respuestas[i][j-1]=0;
+                        respuestas[i-1][j-1]=0;
                     }
                     else if(data[i][j].equals("Disparos"))
                     {
-                        respuestas[i][j-1]=1;
+                        respuestas[i-1][j-1]=1;
                     }
-                    else if(data[i][j].equals("Estrategia"))
+                    else if(data[i-1][j].equals("Estrategia"))
                     {
                         respuestas[i][j-1]=2;
                     }
-                    else if(data[i][j].equals("Simulacion"))
+                    else if(data[i-1][j].equals("Simulacion"))
                     {
-                        respuestas[i][j-1]=3;
+                        respuestas[i-1][j-1]=3;
                     }
-                    else if(data[i][j].equals("Deportes"))
+                    else if(data[i-1][j].equals("Deportes"))
                     {
-                        respuestas[i][j-1]=4;
+                        respuestas[i-1][j-1]=4;
                     }
                     else if(data[i][j].equals("Carreras"))
                     {
-                        respuestas[i][j-1]=5;
+                        respuestas[i-1][j-1]=5;
                     }
                     else if(data[i][j].equals("Aventuras"))
                     {
-                        respuestas[i][j-1]=6;
+                        respuestas[i-1][j-1]=6;
                     }
                     else if(data[i][j].equals("Rol"))
                     {
-                        respuestas[i][j-1]=7;
+                        respuestas[i-1][j-1]=7;
                     }
                     else if(data[i][j].equals("Musical"))
                     {
-                        respuestas[i][j-1]=8;
+                        respuestas[i-1][j-1]=8;
                     }
-                    else if(data[i][j].equals("Arcade"))
+                    else if(data[i-1][j].equals("Arcade"))
                     {
-                        respuestas[i][j-1]=9;
+                        respuestas[i-1][j-1]=9;
                     }
                 }
             }
         }
         return respuestas;
     }
-    //metodo para escribir una matriz en un archivo de texto separando las columnas con tabuladores.
+
     /**
      * metodo para escribir una matriz en un archivo de texto separando las columnas con tabuladores.
      * @param matriz La matriz que se va a escribir en el archivo
@@ -523,6 +523,18 @@ public class Entrada {
                 System.out.println(M[i][j]);
             }
         }
+    }
+    public void imprimirMatriz(int[][] M)
+    {
+        for(int i=0;i<M.length;i++)
+        {
+            for(int j=0;j<M[0].length;j++)
+            {
+                System.out.println(M[i][j]);
+            }
+            System.out.println("fila numero: "+i);
+        }
+
     }
 
 

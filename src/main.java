@@ -25,7 +25,9 @@ public class main {
             }
         }
 
-        e.escribirArchivo(matriz,"test");
+        e.escribirArchivo(e.ParsearEncuesta("C:\\Users\\taka\\Documents\\9 Semestre\\Computación inteligente\\valores\\Perceptrón_ Tipo de Vídeo juego preferido.csv",54,14),"test");
+
+        e.ParsearEncuesta("C:\\Users\\taka\\Documents\\9 Semestre\\Computación inteligente\\valores\\Perceptrón_ Tipo de Vídeo juego preferido.csv",54,14);
 
         /*e.ValoresDeEntrada();
         e.ParsearMatriz("C:\\Users\\taka\\Documents\\testcsv.csv",e.getEntradas(),e.getSalidas());
