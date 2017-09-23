@@ -25,11 +25,11 @@ public class main {
         a.InicializarValores();
         //System.out.println("this L: "+a.yh.length);
         //llenando matrices de los pesos
-        a.llenarAleatorioWh(a.wh);
+        //a.llenarAleatorioWh(a.wh);
         //System.out.println(a.wh.length);
         //System.out.println(a.L);
        // System.out.println(a.wh[0].length);
-        a.llenarAleatorioWo(a.wo);
+        //a.llenarAleatorioWo(a.wo);
         System.out.println("pesos");
         e.imprimirMatriz(a.wo);
         //e.imprimirMatriz(a);

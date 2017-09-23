@@ -5,6 +5,7 @@ public class Aprendizaje {
 
     public Aprendizaje() {
         //Entrada e = new Entrada();
+
     }
 
 
@@ -86,11 +87,13 @@ public class Aprendizaje {
         this.deltah = new double[this.L];
         this.alpha = 0.5;
         this.error = 0;
+        this.wh=llenarAleatorioWh(this.wh);
+        this.wo=llenarAleatorioWh(this.wo);
 
 
     }
 //metodo para llenar una matriz con numeros aleatorios entre -1 y 1
-    public void llenarAleatorioWo(double[][] matriz)
+   /* public void llenarAleatorioWo(double[][] matriz)
     {
 
         for(int i=0;i<matriz.length;i++)
@@ -111,9 +114,9 @@ public class Aprendizaje {
             }
         }
         this.wo=matriz;
-    }
+    }*/
 
-    public void llenarAleatorioWh(double[][] matriz)
+    public double[][] llenarAleatorioWh(double[][] matriz)
     {
 
         for(int i=0;i<matriz.length;i++)
@@ -133,7 +136,7 @@ public class Aprendizaje {
                 }
             }
         }
-        this.wh=matriz;
+        return matriz;
     }
 
 
@@ -156,21 +159,25 @@ public Aprendizaje Aprender()
             }
 
 
-            //wo
+            //yo
+            //deltao
 
-            for (int j = 0; j < M; j++) {
+            for (int k = 0; k < M; k++) {
                 double sumao = 0;
-                for (int k = 0; k < M; k++) {
+                for (int j = 0; j < L; j++) {
                     sumao = yh[j] * wo[k][j];
+
+                    neto[k] = sumao;
+                    sumao = 0;
+                    //Yk
+                    y[k] = 1 / (1 + Math.exp(-neto[k]));
+                    deltao[k] = (d[p][k] - y[k]) * y[k] * (1 - y[k]);
                 }
-                neto[j] = sumao;
-                //Yk
-                y[j] = 1 / (1 + Math.exp(-neto[j]));
             }
 //deltao
-            for (int k = 0; k < M; k++) {
+            /*for (int k = 0; k < M; k++) {
                 deltao[k] = (d[p][k] - y[k]) * y[k] * (1 - y[k]);
-            }
+            }*/
 
 
 //deltah
@@ -179,7 +186,9 @@ public Aprendizaje Aprender()
                 for (int k = 0; k < M; k++) {
                     sumadelta += deltao[k] * wo[k][j];
                 }
-                deltah[j] = yh[j] * (1 - yh[j]) * sumadelta;
+
+                    deltah[j] = yh[j] * (1 - yh[j]) * sumadelta;
+
             }
 //wo
             for (int k = 0; k < M; k++) {

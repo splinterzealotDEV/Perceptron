@@ -193,6 +193,223 @@ public String[][] ParsearMatriz(String ruta,int entradas, int salidas) throws IO
    this.parsedCSV=data;
    return data;
     }
+    //metodo para parsear las respuestas de la encuesta de g forms
+    public int[][] ParsearEncuesta(String ruta,int filas,int columnas) throws IOException {
+        String[][] data = new String[filas][columnas];
+        int[][] respuestas = new int[filas][columnas-1];
+        File file = new File(ruta);
+
+        int row = 0;
+        int col = 0;
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String line = null;
+        //String e=reader.readLine();
+
+        while ((line = reader.readLine()) != null && row < data.length) {
+            StringTokenizer st = new StringTokenizer(line, ",");
+            while (st.hasMoreTokens()) {
+                data[row][col] = (st.nextToken());
+
+                col++;
+            }
+            col = 0;
+            row++;
+        }
+
+        for(int i=0;i<filas;i++)
+        {
+            for(int j=1;j<columnas;j++)
+            {
+                if(j==1)
+                {
+                    if(data[i][j].equals("Rock"))
+                    {
+                        respuestas[i][j-1]=0;
+                    }
+                    else
+                    {
+                        respuestas[i][j-1]=1;
+                    }
+                }
+                if(j==2)
+                {
+                    if(data[i][j].equals("Video #1"))
+                    {
+                        respuestas[i][j-1]=0;
+                    }
+                    else
+                    {
+                        respuestas[i][j-1]=1;
+                    }
+                }
+                if(j==3)
+                {
+                    if(data[i][j].equals("Video #1"))
+                    {
+                        respuestas[i][j-1]=0;
+                    }
+                    else
+                    {
+                        respuestas[i][j-1]=1;
+                    }
+                }
+                if(j==4)
+                {
+                    if(data[i][j].equals("Michael Jackson"))
+                    {
+                        respuestas[i][j-1]=0;
+                    }
+                    else
+                    {
+                        respuestas[i][j-1]=1;
+                    }
+                }
+                if(j==5)
+                {
+                    if(data[i][j].equals("Video #1"))
+                    {
+                        respuestas[i][j-1]=0;
+                    }
+                    else
+                    {
+                        respuestas[i][j-1]=1;
+                    }
+                }
+                if(j==5)
+                {
+                    if(data[i][j].equals("Video #1"))
+                    {
+                        respuestas[i][j-1]=0;
+                    }
+                    else
+                    {
+                        respuestas[i][j-1]=1;
+                    }
+                }
+                if(j==6)
+                {
+                    if(data[i][j].equals("Retro"))
+                    {
+                        respuestas[i][j-1]=0;
+                    }
+                    else
+                    {
+                        respuestas[i][j-1]=1;
+                    }
+                }
+                if(j==7)
+                {
+                    if(data[i][j].equals("Corta duraciÃ³n"))
+                    {
+                        respuestas[i][j-1]=0;
+                    }
+                    else
+                    {
+                        respuestas[i][j-1]=1;
+                    }
+                }
+                if(j==8)
+                {
+                    if(data[i][j].equals("Bailar"))
+                    {
+                        respuestas[i][j-1]=0;
+                    }
+                    else
+                    {
+                        respuestas[i][j-1]=1;
+                    }
+                }
+                if(j==9)
+                {
+                    if(data[i][j].equals("Video #1"))
+                    {
+                        respuestas[i][j-1]=0;
+                    }
+                    else
+                    {
+                        respuestas[i][j-1]=1;
+                    }
+                }
+                if(j==10)
+                {
+                    if(data[i][j].equals("Escuchar mÃºsica y cantar"))
+                    {
+                        respuestas[i][j-1]=0;
+                    }
+                    else
+                    {
+                        respuestas[i][j-1]=1;
+                    }
+                }
+                if(j==11)
+                {
+                    if(data[i][j].equals("Escuchar un sÃ³lo gÃ©nero musical"))
+                    {
+                        respuestas[i][j-1]=0;
+                    }
+                    else
+                    {
+                        respuestas[i][j-1]=1;
+                    }
+                }
+                if(j==12)
+                {
+                    if(data[i][j].equals("Rock/Metal"))
+                    {
+                        respuestas[i][j-1]=0;
+                    }
+                    else
+                    {
+                        respuestas[i][j-1]=1;
+                    }
+                }
+                if(j==13)
+                {
+                    if(data[i][j].equals("AcciÃ³n"))
+                    {
+                        respuestas[i][j-1]=0;
+                    }
+                    else if(data[i][j].equals("Disparos"))
+                    {
+                        respuestas[i][j-1]=1;
+                    }
+                    else if(data[i][j].equals("Estrategia"))
+                    {
+                        respuestas[i][j-1]=2;
+                    }
+                    else if(data[i][j].equals("Simulacion"))
+                    {
+                        respuestas[i][j-1]=3;
+                    }
+                    else if(data[i][j].equals("Deportes"))
+                    {
+                        respuestas[i][j-1]=4;
+                    }
+                    else if(data[i][j].equals("Carreras"))
+                    {
+                        respuestas[i][j-1]=5;
+                    }
+                    else if(data[i][j].equals("Aventuras"))
+                    {
+                        respuestas[i][j-1]=6;
+                    }
+                    else if(data[i][j].equals("Rol"))
+                    {
+                        respuestas[i][j-1]=7;
+                    }
+                    else if(data[i][j].equals("Musical"))
+                    {
+                        respuestas[i][j-1]=8;
+                    }
+                    else if(data[i][j].equals("Arcade"))
+                    {
+                        respuestas[i][j-1]=9;
+                    }
+                }
+            }
+        }
+        return respuestas;
+    }
     public boolean EstaEn(List<Integer> lista, int value)
     {
         for(int i=0;i<lista.size();i++)
