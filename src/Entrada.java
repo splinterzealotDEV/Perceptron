@@ -224,10 +224,10 @@ public class Entrada {
    return data;
     }
     //metodo para parsear las respuestas de la encuesta de g forms
-    public int[][] ParsearEncuesta(String ruta,int filas,int columnas) throws IOException {
+    public double[][] ParsearEncuesta(String ruta,int filas,int columnas) throws IOException {
         String[][] data = new String[filas][columnas];
         //-1 por que la primera columna tiene las fechas
-        int[][] respuestas = new int[filas][columnas-1];
+        double[][] respuestas = new double[filas][columnas-1];
         File file = new File(ruta);
 
         int row = 0;
@@ -238,7 +238,7 @@ public class Entrada {
 
         while ((line = reader.readLine()) != null && row < data.length) {
             StringTokenizer st = new StringTokenizer(line, ",");
-            while (st.hasMoreTokens()) {
+            while (st.hasMoreTokens()&&col<13) {
                 //fucking quotes .I.
                 data[row][col] = (st.nextToken().toString().replace("\"",""));
                 System.out.println(data[row][col]);
@@ -452,7 +452,7 @@ public class Entrada {
      * @param matriz La matriz que se va a escribir en el archivo
      * @param nombre nombre del archivo que se va a escribir
      */
-    public void escribirArchivo(int[][] matriz,String nombre)
+    public void escribirArchivo(double[][] matriz,String nombre)
     {
         //ruta del archivo que se va a escribir.
         String ruta="C:\\Users\\taka\\Documents\\9 Semestre\\Computación inteligente\\Files\\"+nombre+".txt";
@@ -472,11 +472,11 @@ public class Entrada {
                 {
                     //validando que la ultima columna no agregue un tabulador
                     if (j==matriz[0].length-1) {
-                        linea.append(Integer.toString(matriz[i][j]));
+                        linea.append(Double.toString(matriz[i][j]));
                     }
                     else
                     {
-                        linea.append(Integer.toString(matriz[i][j])+"\t");
+                        linea.append(Double.toString(matriz[i][j])+"\t");
                     }
                 }
                 //validando que la ultima linea no añada un salto de linea
@@ -522,6 +522,7 @@ public class Entrada {
             {
                 System.out.println(M[i][j]);
             }
+            System.out.println("fila numero: "+i);
         }
     }
     public void imprimirMatriz(int[][] M)
@@ -535,6 +536,43 @@ public class Entrada {
             System.out.println("fila numero: "+i);
         }
 
+    }
+    public double[][] escribirDeseados(double[][] m,int salidas)
+    {
+        double[][] matriz=new double[m.length][salidas];
+        for(int i=0;i<m.length;i++)
+        {
+            System.out.println((int)m[i][m[0].length-1]);
+           matriz[i][(int)m[i][m[0].length-1]]=1;
+        }
+        return matriz;
+
+    }
+    public double[][] quitarColumnas(double[][] m, List<Integer> columnas)
+    {
+        double[][] matriz=new double[m.length][m[0].length-columnas.size()];
+        int i=0,j=0,k=0;
+        while(i<m.length)
+        {
+            j=0;
+            k=0;
+            while (j < m[0].length)
+            {
+                if(columnas.contains(j))
+                {
+                    System.out.println(columnas.contains(j));
+                }
+                else
+                {
+                    System.out.println("probando: "+m[i][j]);
+                    matriz[i][k]=m[i][j];
+                    k++;
+                }
+                j++;
+            }
+            i++;
+        }
+        return matriz;
     }
 
 

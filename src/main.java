@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class main {
@@ -6,7 +8,7 @@ public class main {
 
 
         Entrada e=new Entrada();
-        int[][] matriz=new int[3][3];
+        double[][] matriz=new double[4][4];
         for(int i=0;i<matriz.length;i++)
         {
             for(int j=0;j<matriz[0].length;j++)
@@ -24,10 +26,18 @@ public class main {
                 }
             }
         }
+        e.imprimirMatriz(matriz);
+        List<Integer> l =new ArrayList<>();
+        l.add(2);
+        //l.add(0);
 
-        e.escribirArchivo(e.ParsearEncuesta("C:\\Users\\taka\\Documents\\9 Semestre\\Computación inteligente\\valores\\Perceptrón_ Tipo de Vídeo juego preferido.csv",54,14),"test");
-
-        e.ParsearEncuesta("C:\\Users\\taka\\Documents\\9 Semestre\\Computación inteligente\\valores\\Perceptrón_ Tipo de Vídeo juego preferido.csv",54,14);
+        double[][] rty=e.quitarColumnas(matriz,l);
+        e.imprimirMatriz(rty);
+        //e.escribirArchivo(e.ParsearEncuesta("C:\\Users\\taka\\Documents\\9 Semestre\\Computación inteligente\\valores\\final\\Perceptrón_ Tipo de Vídeo juego preferido.csv",72,13),"testfinal2.0");
+        //double[][] RR=e.escribirDeseados(e.ParsearEncuesta("C:\\Users\\taka\\Documents\\9 Semestre\\Computación inteligente\\valores\\final\\Perceptrón_ Tipo de Vídeo juego preferido.csv",72,13),10);
+        //e.ParsearEncuesta("C:\\Users\\taka\\Documents\\9 Semestre\\Computación inteligente\\valores\\Perceptrón_ Tipo de Vídeo juego preferido.csv",60,14);
+        //e.imprimirMatriz(RR);
+        //e.escribirArchivo(RR,"testD");
 
         /*e.ValoresDeEntrada();
         e.ParsearMatriz("C:\\Users\\taka\\Documents\\testcsv.csv",e.getEntradas(),e.getSalidas());
