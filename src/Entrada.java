@@ -238,10 +238,11 @@ public class Entrada {
 
         while ((line = reader.readLine()) != null && row < data.length) {
             StringTokenizer st = new StringTokenizer(line, ",");
+            //cambiar valor segun sea necesario
             while (st.hasMoreTokens()&&col<13) {
                 //fucking quotes .I.
                 data[row][col] = (st.nextToken().toString().replace("\"",""));
-                System.out.println(data[row][col]);
+                //System.out.println(data[row][col]);
 
                 col++;
             }
@@ -537,6 +538,13 @@ public class Entrada {
         }
 
     }
+
+    /**
+     *
+     * @param m matriz que se recibe con todas las entradas del csv incluyendo las salidas
+     * @param salidas numero de salidas que se tienen
+     * @return una matriz de con mismo numero de columnas que el valor de salidas, la cual contiene los valored deseados de los casos de aprendizaje
+     */
     public double[][] escribirDeseados(double[][] m,int salidas)
     {
         double[][] matriz=new double[m.length][salidas];
@@ -548,23 +556,32 @@ public class Entrada {
         return matriz;
 
     }
+
+    /**
+     *
+     * @param m matriz a la que se le van a quitar las columnas deseadas
+     * @param columnas lista que contiene los valores enteros de las columnas que se van a quitar
+     * @return Matriz nueva sin las columnas especificadas
+     */
     public double[][] quitarColumnas(double[][] m, List<Integer> columnas)
     {
+        //matriz de columnas n-el tamaño de la lista
         double[][] matriz=new double[m.length][m[0].length-columnas.size()];
         int i=0,j=0,k=0;
         while(i<m.length)
         {
-            j=0;
-            k=0;
+            //se reinician los indices de j y k para cada iteracion de i
+            j=0;//indice para iterar columnas de la matriz original
+            k=0;//indice para iterar columnas de la matriz nueva
             while (j < m[0].length)
             {
                 if(columnas.contains(j))
                 {
-                    System.out.println(columnas.contains(j));
+
                 }
                 else
                 {
-                    System.out.println("probando: "+m[i][j]);
+                    //si j no esta contenido en la lista se guarda ese valor de m en la matriz en la columna k
                     matriz[i][k]=m[i][j];
                     k++;
                 }
